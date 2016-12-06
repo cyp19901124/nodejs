@@ -27,7 +27,7 @@ var fn_login = async (ctx, next) => {
 
 var fn_regist = async (ctx, next) => {
     try {
-        await User.create({     //await 关键字 等待异步操作完成后再执行后续操作
+        await User.create({     //await 关键字 等待异步操作完成后再执行后续操作yes
             name: ctx.request.body.name,
             gender: ctx.request.body.gender,
             email: ctx.request.body.email,
