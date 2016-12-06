@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src="/static/jquery-3.1.1.js"></script>
+        <script>
+            $(()=>{
+                $('#getUserList').click(()=>{
+                    $.get('/getAll',(data)=>{
+                        console.log(data);
+                    })
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        {% if success %}
+        <h1>regist success!</h1>
+        <p>hello {{user.name}}</p>
+
+        <p id="getUserList">get user list</p>
+        {% else %}
+        <h2>login failed</h2>
+        {% endif %}
+    </body>
+</html>
