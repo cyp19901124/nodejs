@@ -10,7 +10,7 @@ var fn_login = async (ctx, next) => {
     try {
         let user = await User.findOne({where : {email:email} });
 
-        if(user.email == email && user.passwd == password){
+        if(user != null && user.email == email && user.passwd == password){
             ctx.render('result.html',{
                 success:true,
                 user:user
