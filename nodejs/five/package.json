@@ -1,0 +1,13 @@
+{
+    "name": "five",
+    "version": "1.0.0",
+    "description": "express",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "author": "Me",
+    "dependencies": {
+        "express": "4.14.0"
+    }
+}

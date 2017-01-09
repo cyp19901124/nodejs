@@ -11,17 +11,21 @@ var fn_login = async (ctx, next) => {
         let user = await User.findOne({where : {email:email} });
 
         if(user != null && user.email == email && user.passwd == password){
+            ctx.session.user = user;
             ctx.render('result.html',{
                 success:true,
                 user:user
-            })
+            });
         }else{
             ctx.response.redirect('/');
         }
 
     } catch (err) {
         console.log(err);
-        ctx.response.body=err;
+        ctx.render('result.html',{
+            success:false,
+            reason:err
+        });
     }
 };
 
@@ -44,21 +48,9 @@ var fn_regist = async (ctx, next) => {
     
 };
 
-var fn_findAll = async (ctx, next) => {
-    try {
-        let users = JSON.stringify(await User.findAll());
-        ctx.response.body = users;
-    } catch (err) {
-         console.log('failed: ' + err);
-         ctx.response.body = err;
-        //console.log('created.' + JSON.stringify(user));
-        
-    }
-    
-};
+
 
 module.exports = {
     'POST /login': fn_login,
-    'POST /regist': fn_regist,
-    'GET /getAll':fn_findAll
+    'POST /regist': fn_regist
 };

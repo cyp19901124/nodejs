@@ -11,6 +11,12 @@ app.use(async (ctx, next) => {
     ctx.response.body = '<h1>Hello, koa2!</h1>';
 });
 
+app.use(async (ctx, next)=>{
+    let count = ctx.session.count || 0;
+    console.log('第'+ ++count + '次访问');
+    ctx.session.count = count;
+});
+
 // 在端口3000监听:
 app.listen(3000);
 console.log('app started at port 3000...');
